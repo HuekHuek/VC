@@ -252,7 +252,10 @@ function thumbnail(session) {
 // Receiver for Calls
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 phone.receive(function(session){
-    session.message(message);
+//     session.message(message);
+    session.message(function( session, message ) {
+        show_chat( session.number, message.text );
+    } );
     session.thumbnail(thumbnail);
     session.connected(connected);
     session.ended(ended);
