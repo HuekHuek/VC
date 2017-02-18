@@ -260,6 +260,10 @@ phone.receive(function(session){
     if (!thumbnail.ival)
         thumbnail.ival = setInterval( () => thumbnail(session), 100 );
 });
+        
+phone.message(function( session, message ) {
+    show_chat( session.number, message.text );
+} );
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Chat
