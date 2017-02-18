@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>WebRTC Simple Calling API + Mobile</title>
+    <title>Video Call</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -247,6 +247,10 @@ function thumbnail(session) {
     img_out.appendChild(session.image);
     img_out.appendChild(phone.snap().image);
 }
+
+phone.message(function( session, message ) {
+    show_chat( session.number, message.text );
+} );
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Receiver for Calls
