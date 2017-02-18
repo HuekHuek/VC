@@ -248,10 +248,6 @@ function thumbnail(session) {
     img_out.appendChild(phone.snap().image);
 }
 
-phone.message(function( session, message ) {
-    show_chat( session.number, message.text );
-} );
-
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Receiver for Calls
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -279,6 +275,9 @@ PUBNUB.bind( 'keydown', chat_in, function(e) {
     if (!chat_in.value.replace( /\s+/g, '' )) return true;
 
     phone.send({ text : chat_in.value });
+    phone.message(function( session, message ) {
+        show_chat( session.number, message.text );
+    } );
     add_chat( my_number.number + " (Me)", chat_in.value );
     chat_in.value = '';
 } )
