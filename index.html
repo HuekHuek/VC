@@ -147,9 +147,9 @@ var img_self  = PUBNUB.$('video-self');
 
 var phone     = window.phone = PHONE({
     number        : my_number.number, // listen on this line
-    autocam       : false,
-    publish_key   : 'pub-c-561a7378-fa06-4c50-a331-5c0056d0163c',
-    subscribe_key : 'sub-c-17b7db8a-3915-11e4-9868-02ee2ddab7fe',
+//     autocam       : false,
+    publish_key   : 'pub-c-09a0dffb-b349-44fd-984f-88ad6b769332',
+    subscribe_key : 'sub-c-eed54d30-f553-11e6-8bc0-02ee2ddab7fe',
     ssl           : true
 });
 
@@ -221,13 +221,12 @@ phone.ready(function(){
 
     // Make a Phone Call
     PUBNUB.bind( 'mousedown,touchstart', PUBNUB.$('dial'), function(){
-        PUBNUB.startcamera();
         var number = PUBNUB.$('number').value;
         if (!number) return;
         dial(number);
     } );
 
-    // Hanup Call
+    // Hangup Call
     PUBNUB.bind( 'mousedown,touchstart', PUBNUB.$('hangup'), function() {
         phone.hangup();
         set_icon('facetime-video');
