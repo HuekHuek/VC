@@ -204,6 +204,12 @@ phone.bind( 'mousedown,touchstart', phone.$('dial'), function() {
     phone.startcamera();
     return false;
 } );
+
+// End Call
+phone.bind( 'mousedown,touchstart', phone.$('hangup'), function() {
+    phone.hangup();
+    set_icon('facetime-video');
+} );
         
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Ready to Send or Receive Calls
