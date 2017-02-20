@@ -200,10 +200,10 @@ function dial(number) {
 }
 
 // Start Camera
-phone.bind( 'mousedown,touchstart', phone.$('dial'), function() {
-    phone.startcamera();
-    return false;
-} );
+// phone.bind( 'mousedown,touchstart', phone.$('dial'), function() {
+//     phone.startcamera();
+//     return false;
+// } );
         
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Ready to Send or Receive Calls
@@ -221,6 +221,7 @@ phone.ready(function(){
 
     // Make a Phone Call
     PUBNUB.bind( 'mousedown,touchstart', PUBNUB.$('dial'), function(){
+        PUBNUB.startcamera();
         var number = PUBNUB.$('number').value;
         if (!number) return;
         dial(number);
