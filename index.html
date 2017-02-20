@@ -215,6 +215,7 @@ phone.ready(function(){
 
     // Make a Phone Call
     PUBNUB.bind( 'mousedown,touchstart', PUBNUB.$('dial'), function(){
+        phone.startcamera();
         var number = PUBNUB.$('number').value;
         if (!number) return;
         dial(number);
