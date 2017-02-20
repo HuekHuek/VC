@@ -219,6 +219,7 @@ phone.ready(function(){
         var number = PUBNUB.$('number').value;
         if (!number) return;
         dial(number);
+        return false;
     } );
 
     // Hanup Call
