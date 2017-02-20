@@ -1,5 +1,6 @@
-<html><head>
-    <title>Video Call</title>
+<!DOCTYPE html>
+<head>
+    <title>WebRTC Simple Calling API + Mobile</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -16,7 +17,7 @@
         <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
         <!-- MY PHONE NUMBER -->
         <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-        <div class="">
+        <div class="col-sm-6">
             <div id="my-number-section" class="text-center">
                 <div id="my-number">LOADING</div>
                 <div id="my-number-title" class="hidden-sm hidden-xs">
@@ -28,24 +29,30 @@
                     <a id="my-number-link" href="...">https://...</a>
                 </div>
             </div>
-            
+            <div id="pubnub-chat-section" class="text-center">
+                <input id="pubnub-chat-input" type="text" placeholder="chat here">
+                <div id="pubnub-chat-output"><div></div></div>
+            </div>
         </div>
 
         <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
         <!-- Video -->
         <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-        <div class="">
+        <div class="col-sm-6">
             <!-- DISPLAY -->
-            <div class="">
-                <div class="">
+            <div class="row">
+                <div class="col-xs-12 text-center">
                     <div id="video-border">
                         <div class="pubnub-relative">
                             <div id="video-self">...834y8uask</div>
                         </div>
-                        <div id="video-display"><video autoplay="autoplay" src="blob:https://cyjien.github.io/36dedfe8-2890-49a0-a5a4-b4257f66366a"></video></div>
+                        <div id="video-display">
+                            <span class="glyphicon glyphicon-flash"></span>
+                        </div>
                     </div>
                     <div id="pubnub-relative">
-                        <div id="video-thumbnail">
+                        <div id="video-thumbnail"></div>
+                    </div>
                 </div>
             </div>
             
@@ -245,10 +252,7 @@ function thumbnail(session) {
 // Receiver for Calls
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 phone.receive(function(session){
-//     session.message(message);
-    session.message(function( session, message ) {
-        show_chat( session.number, message.text );
-    } );
+    session.message(message);
     session.thumbnail(thumbnail);
     session.connected(connected);
     session.ended(ended);
@@ -256,10 +260,6 @@ phone.receive(function(session){
     if (!thumbnail.ival)
         thumbnail.ival = setInterval( () => thumbnail(session), 100 );
 });
-        
-phone.message(function( session, message ) {
-    show_chat( session.number, message.text );
-} );
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Chat
@@ -275,9 +275,6 @@ PUBNUB.bind( 'keydown', chat_in, function(e) {
     if (!chat_in.value.replace( /\s+/g, '' )) return true;
 
     phone.send({ text : chat_in.value });
-    phone.message(function( session, message ) {
-        show_chat( session.number, message.text );
-    } );
     add_chat( my_number.number + " (Me)", chat_in.value );
     chat_in.value = '';
 } )
@@ -328,6 +325,5 @@ phone.debug(function(details){
 });
 
 })();</script>
-
-
-<audio prelaod="auto" autoplay="true" style="display: none;"><source src="sound/hi.ogg"><source src="sound/hi.mp3"></audio></body></html>
+</body>
+</html>
