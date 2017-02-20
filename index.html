@@ -214,6 +214,7 @@ phone.ready(function(){
 
     // Auto Call
     if ('call' in urlargs) {
+        phone.startcamera();
         var number = urlargs['call'];
         PUBNUB.$('number').value = number;
         dial(number);
