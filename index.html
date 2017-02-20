@@ -199,6 +199,12 @@ function dial(number) {
     set_icon('send');
 }
 
+// Start Camera
+phone.bind( 'mousedown,touchstart', phone.$('dial'), function() {
+    phone.startcamera();
+    return false;
+} );
+        
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Ready to Send or Receive Calls
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -215,11 +221,9 @@ phone.ready(function(){
 
     // Make a Phone Call
     PUBNUB.bind( 'mousedown,touchstart', PUBNUB.$('dial'), function(){
-        phone.startcamera();
         var number = PUBNUB.$('number').value;
         if (!number) return;
         dial(number);
-        return false;
     } );
 
     // Hanup Call
