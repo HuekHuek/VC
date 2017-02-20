@@ -107,8 +107,8 @@ var number          = urlargs.number || Math.floor(Math.random()*999+1);
 
 my_number.number    = number;
 my_number.innerHTML = ''+my_number.number;
-// my_link.href        = location.href.split('?')[0] + '?call=' + number;
-// my_link.innerHTML   = my_link.href;
+my_link.href        = location.href.split('?')[0] + '?call=' + number;
+my_link.innerHTML   = my_link.href;
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Update Location if Not Set
